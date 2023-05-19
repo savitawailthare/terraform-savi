@@ -4,12 +4,11 @@ provider "aws" {
 provider "aws" {
   region = "ap-south-1"
 }
-resource "aws_iam_user" "lb-terra" {
-  name = "user-aws"
- 
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket"
 
   tags = {
-    name= "devop"
-    environment= "terra-op"
+    Name        = "My bucket"
+    Environment = "Dev"
   }
 }
