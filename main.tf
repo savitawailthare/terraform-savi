@@ -9,6 +9,7 @@ resource "aws_iam_user" "lb-terra" {
  
 
   tags = {
-    tag-key = "devop"
+    name= "devop"
+    environment= "terra-op"
   }
 }
