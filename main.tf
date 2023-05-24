@@ -7,12 +7,12 @@ resource "aws_instance" "web" {
   associate_public_ip_address = "true"
   key_name                    = "mumbai"
   security_groups             = ["default"]
-   vpc_security_groups_ids = aws_security_group.this.id
+vpc_security_group_ids  = [aws_security_group.this.id]
   ebs_block_device {
     device_name = "/dev/sdc"
     volume_size = 10
     volume_type = "gp2"
-    
+
   }
 
   tags = {
@@ -23,9 +23,9 @@ resource "aws_instance" "web" {
 
 resource "aws_security_group" "this" {
   name        = "demo-sg"
-  
-  vpc_id      = vpc-0953655dea4594840
- 
+
+  vpc_id      = "vpc-0953655dea4594840"
+
 
   ingress {
     description      = "TLS from VPC"
@@ -34,13 +34,26 @@ resource "aws_security_group" "this" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
   }
-
+ ingress {
+    description      = "TLS from VPC"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+   ingress {
+    description      = "TLS from VPC"
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
   egress {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-  
+
   }
 
   tags = {
