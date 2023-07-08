@@ -22,9 +22,8 @@ vpc_security_group_ids  = [aws_security_group.this.id]
 
 
 resource "aws_security_group" "this" {
-  name        = "demo-sg"
-
-  vpc_id      = "vpc-0953655dea4594840"
+  name        = "demo-sg-TF"
+   vpc_id      = "vpc-0953655dea4594840"
 
 
   ingress {
@@ -57,6 +56,6 @@ resource "aws_security_group" "this" {
   }
 
   tags = {
-    Name = "My first sg"
+    Name = "My first SECOND sg"
   }
 }
